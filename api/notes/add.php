@@ -22,7 +22,7 @@ $stmt->bind_param("sssss", $title, $content, $date, $color, $owner);
 if ($stmt->execute()) {
     $noteId = $stmt->insert_id;
     $note = array(
-        "id" => $stmt->insert_id,
+        "note_id" => $stmt->insert_id,
         "title" => $title,
         "content" => $content,
         "date" => $date,

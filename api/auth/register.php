@@ -23,25 +23,26 @@ $stmt->bind_param("sss", $username, $email, $hashed);
 if ($stmt->execute()) {
     // return a success response
     http_response_code(200);
-    echo "Sending mail";
-    $to = $email;
-    $subject = 'Subject of your email';
-    $message = '<html><head> <title>Verify Your Account</title> <style> body { font-family: Arial, sans-serif; background-color: #f6f6f6; padding: 0; margin: 0; } .container { max-width: 600px; margin: 0 auto; padding: 20px; background-color: #fff; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-radius: 5px; } h1 { font-size: 24px; margin-top: 0; } p { font-size: 16px; line-height: 1.5; } a { color: #2196f3; text-decoration: none; } a:hover { text-decoration: underline; } </style></head><body> <div class="container"> <h1>Verify Your Account</h1> <p>Thank you for creating an account with Mee. To activate your account, please click on the following link:</p> <p><a href="https://meedb.000webhostapp.com/' . $token . '">Verify Account</a></p> <p>If you did not create an account on our website, please ignore this email.</p> </div></body></html>';
-    $headers = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-    $headers .= 'From: meedatabase@gmail.com' . "\r\n" .
-        'X-Mailer: PHP/' . phpversion();
+    // echo "Sending mail";
+    // $to = $email;
+    // $subject = 'Subject of your email';
+    // $message = '<html><head> <title>Verify Your Account</title> <style> body { font-family: Arial, sans-serif; background-color: #f6f6f6; padding: 0; margin: 0; } .container { max-width: 600px; margin: 0 auto; padding: 20px; background-color: #fff; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-radius: 5px; } h1 { font-size: 24px; margin-top: 0; } p { font-size: 16px; line-height: 1.5; } a { color: #2196f3; text-decoration: none; } a:hover { text-decoration: underline; } </style></head><body> <div class="container"> <h1>Verify Your Account</h1> <p>Thank you for creating an account with Mee. To activate your account, please click on the following link:</p> <p><a href="https://meedb.000webhostapp.com/' . $token . '">Verify Account</a></p> <p>If you did not create an account on our website, please ignore this email.</p> </div></body></html>';
+    // $headers = 'MIME-Version: 1.0' . "\r\n";
+    // $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    // $headers .= 'From: meedatabase@gmail.com' . "\r\n" .
+    //     'X-Mailer: PHP/' . phpversion();
 
-    if(mail($to, $subject, $message, $headers)){
-        echo "Mail sent!";
-    }else{
-        echo "Error mail";
-    }
+    // if(mail($to, $subject, $message, $headers)){
+    //     echo "Mail sent!";
+    // }else{
+    //     echo "Error mail";
+    // }
+    echo json_encode(true);
     
 } else {
     // return an error response
     http_response_code(500);
-    echo json_encode(array("message" => "Error creating user: " . $stmt->error));
+    echo json_encode(false);
 }
 
 // close the database connection
